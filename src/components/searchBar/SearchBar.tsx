@@ -1,11 +1,17 @@
+import { ChangeEvent } from 'react';
 import { BsSearch } from 'react-icons/bs';
+
 import _ from 'lodash';
 import styles from './searchBar.module.scss';
+import { useSetRecoilState } from 'recoil';
+import { keywordValue } from 'store/recoil';
 
 const SearchBar = () => {
-  const debounceOnChange = _.debounce((e: any) => {
-    console.log(e.target.value);
-  }, 1000);
+  const setKeywordValue = useSetRecoilState(keywordValue);
+
+  const debounceOnChange = _.debounce((e: ChangeEvent<HTMLInputElement>) => {
+    setKeywordValue(e.target.value);
+  }, 300);
 
   return (
     <div className={styles.searchWrapper}>

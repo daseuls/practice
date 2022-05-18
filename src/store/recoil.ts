@@ -1,11 +1,12 @@
 import { atom } from 'recoil';
+import { ISickItem } from 'type/interface';
 
-export const searchResult = atom({
-  key: 'searchResult',
+export const searchResult = atom<ISickItem[] | []>({
+  key: 'serchResult',
   default: [],
 });
 
-export const searchValue = atom({
-  key: 'searchValue',
+export const keywordValue = atom({
+  key: 'keywordValue',
   default: '',
 });
