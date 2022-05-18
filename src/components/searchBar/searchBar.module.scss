@@ -1,5 +1,5 @@
-@use 'styles/mixins/flexbox';
-@use 'styles/constants/colors';
+@use '../../styles/mixins/flexbox';
+@use '../../styles/constants/colors';
 
 .searchWrapper {
   display: flex;
@@ -9,12 +9,9 @@
   max-width: 700px;
 
   .searchBar {
-    align-items: baseline;
-    justify-content: space-between;
     min-width: inherit;
     height: 64px;
-    vertical-align: middle;
-    background-color: colors.$WHITE;
+    background-color: #ffffff;
     border-radius: 30px;
 
     > div,
@@ -23,6 +20,9 @@
     }
 
     > div {
+      width: 2em;
+      height: 2em;
+      margin: 1.5vh;
       margin-left: 20px;
       line-height: 2;
       vertical-align: middle;
@@ -31,37 +31,30 @@
     }
 
     form {
-      width: calc(100% - 100px);
-      height: inherit;
-      padding: 20px 24px;
-
-      > svg {
-        margin-right: 15px;
-      }
-
       input {
-        width: 85%;
-        font-size: larger;
+        display: flex;
+        padding-top: 20px;
+        padding-right: 24px;
+        padding-bottom: 20px;
+        padding-left: 24px;
         font-weight: 400;
-        letter-spacing: 0.6px;
 
         ::placeholder {
-          color: colors.$GRAY2;
+          color: colors.$PLACEHOLDER_TEXT;
         }
       }
     }
 
     button {
       float: right;
-      width: 96.4766px;
       padding: 18px 32px;
       font-size: 1.125rem;
       font-weight: 700;
       line-height: 1.6;
-      color: colors.$WHITE;
+      color: #ffffff;
       letter-spacing: -0.018em;
       cursor: pointer;
-      background-color: colors.$THEME_COLOR;
+      background-color: #007be9;
       border-width: 0;
       border-radius: 0 42px 42px 0;
     }
