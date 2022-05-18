@@ -1,7 +1,7 @@
+import { Loading } from 'components/loading/Loading';
 import { BsSearch } from 'react-icons/bs';
 import { useRecoilValue } from 'recoil';
 import { searchResult } from 'store/recoil';
-
 import { ISickItem } from 'type/interface';
 
 import styles from './searchRecommendation.module.scss';
@@ -16,7 +16,9 @@ const SearchRecommendation = ({ isLoading }: IProps) => {
   return (
     <div className={styles.recommendationWrapper}>
       {isLoading ? (
-        <div>로딩중</div>
+        <div className={styles.loadingWrapper}>
+          <Loading />
+        </div>
       ) : (
         <ul>
           {resultList.length === 0 ? (
@@ -24,8 +26,8 @@ const SearchRecommendation = ({ isLoading }: IProps) => {
           ) : (
             <div>
               <span>추천 검색어</span>
-              {resultList.map((el: ISickItem, index) => (
-                <li key={index}>
+              {resultList.map((el: ISickItem) => (
+                <li key={el.sickCd}>
                   <BsSearch className={styles.reactIcons} />
                   <span className={styles.searchWord}>{el.sickNm}</span>
                 </li>
