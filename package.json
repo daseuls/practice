@@ -37,6 +37,7 @@
     "axios": "^0.27.2",
     "classnames": "^2.3.1",
     "dayjs": "^1.11.2",
+    "fuzzysort": "^1.9.0",
     "i18n-iso-countries": "^7.4.0",
     "i18next": "^21.8.0",
     "i18next-browser-languagedetector": "^6.1.4",

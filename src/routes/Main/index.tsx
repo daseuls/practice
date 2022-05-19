@@ -6,30 +6,13 @@ import { keywordValue, searchResult } from 'store/recoil';
 import SearchBar from 'components/searchBar/SearchBar';
 import SearchRecommendation from 'components/searchRecommendation/SearchRecommendation';
 import styles from '../routes.module.scss';
+import { getSearchResult } from 'utils/fetchData';
 
 const Main = () => {
   const keyword = useRecoilValue(keywordValue);
   const setResultList = useSetRecoilState(searchResult);
 
-  const fetchData = () => {
-    return axios.get(
-      `${process.env.REACT_APP_BASE_URL}?ServiceKey=${process.env.REACT_APP_SERVICE_KEY}&searchText=${keyword}&_type=json`
-    );
-  };
-
-  const { isLoading, data } = useQuery(['data', keyword], fetchData);
-
-  useEffect(() => {
-    if (data) {
-      if (data?.data.response.body.totalCount === 0 || keyword === '') {
-        setResultList([]);
-      } else if (data?.data.response.body.totalCount === 1) {
-        setResultList([data?.data.response.body.items.item]);
-      } else {
-        setResultList(data?.data.response.body.items.item);
-      }
-    }
-  }, [data, keyword, setResultList]);
+  const { isLoading, data } = useQuery(['data', keyword], () => getSearchResult(keyword));
 
   return (
     <div className={styles.mainWrapper}>
@@ -39,7 +22,7 @@ const Main = () => {
         온라인으로 참여하기
       </h1>
       <SearchBar />
-      <SearchRecommendation isLoading={isLoading} />
+      <SearchRecommendation data={data} isLoading={isLoading} />
     </div>
   );
 };
