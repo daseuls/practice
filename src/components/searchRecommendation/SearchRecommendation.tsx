@@ -1,7 +1,5 @@
 import { Loading } from 'components/loading/Loading';
 import { SearchItem } from 'components/searchItem/SearchItem';
-import { useRecoilValue } from 'recoil';
-import { keywordValue, searchResult } from 'store/recoil';
 import { ISickItem } from 'type/interface';
 
 import styles from './searchRecommendation.module.scss';

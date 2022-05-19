@@ -1,8 +1,6 @@
-import { useEffect } from 'react';
-import axios from 'axios';
 import { useQuery } from 'react-query';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { keywordValue, searchResult } from 'store/recoil';
+import { useRecoilValue } from 'recoil';
+import { keywordValue } from 'store/recoil';
 import SearchBar from 'components/searchBar/SearchBar';
 import SearchRecommendation from 'components/searchRecommendation/SearchRecommendation';
 import styles from '../routes.module.scss';
@@ -10,7 +8,6 @@ import { getSearchResult } from 'utils/fetchData';
 
 const Main = () => {
   const keyword = useRecoilValue(keywordValue);
-  const setResultList = useSetRecoilState(searchResult);
 
   const { isLoading, data } = useQuery(['data', keyword], () => getSearchResult(keyword), {
     enabled: !!keyword,
