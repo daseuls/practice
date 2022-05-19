@@ -12,7 +12,12 @@ const Main = () => {
   const keyword = useRecoilValue(keywordValue);
   const setResultList = useSetRecoilState(searchResult);
 
-  const { isLoading, data } = useQuery(['data', keyword], () => getSearchResult(keyword));
+  const { isLoading, data } = useQuery(['data', keyword], () => getSearchResult(keyword), {
+    enabled: !!keyword,
+    staleTime: Infinity,
+    keepPreviousData: true,
+    refetchOnWindowFocus: false,
+  });
 
   return (
     <div className={styles.mainWrapper}>
